@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            AdminSeeder::class
+            AdminSeeder::class,
+            LocationsSeeder::class,
+            CategorySeeder::class,
+            FiltersSeeder::class
         ]);
     }
 }

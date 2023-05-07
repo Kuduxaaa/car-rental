@@ -3,7 +3,7 @@
     <div class="aside-logo py-8" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="../../demo6/dist/index.html" class="d-flex align-items-center">
-            <img alt="Logo" src="assets/media/logos/logo-demo6.svg" class="h-45px logo" />
+            <img alt="Logo" src="/assets/media/logos/logo-demo6.svg" class="h-45px logo" />
         </a>
         <!--end::Logo-->
     </div>
@@ -343,108 +343,22 @@
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="right-start" class="menu-item here show py-2">
+                <a href="{{ route('users') }}" class="menu-item py-2 {{ Request::route()->getName() === 'users' ? 'here' : '' }}">
                     <span class="menu-link menu-center" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                         <span class="menu-icon me-0">
                             <i class="bi bi-people fs-2"></i>
                         </span>
                         <span class="menu-title">Users</span>
                     </span>
-                    <div class="menu-sub menu-sub-dropdown w-225px px-1 py-4">
-                        <div class="menu-item">
-                            <div class="menu-content">
-                                <span class="menu-section fs-5 fw-bolder ps-1 py-1">Users</span>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link active" href="../../demo6/dist/apps/customers/getting-started.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Getting Started</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/apps/customers/list.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Customer Listing</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/apps/customers/view.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Customer Details</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="right-start" class="menu-item py-2">
+                </a>
+                <a href="{{ route('categories') }}" class="menu-item py-2 {{ Request::route()->getName() === 'categories' ? 'here' : '' }}">
                     <span class="menu-link menu-center" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                         <span class="menu-icon me-0">
                             <i class="bi bi-file-text fs-2"></i>
                         </span>
-                        <span class="menu-title">General</span>
+                        <span class="menu-title">Categories</span>
                     </span>
-                    <div class="menu-sub menu-sub-dropdown w-225px px-1 py-4">
-                        <div class="menu-item">
-                            <div class="menu-content">
-                                <span class="menu-section fs-5 fw-bolder ps-1 py-1">General</span>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/pages/company/about.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">About Us</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/pages/company/pricing.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Pricing</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/pages/company/contact.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Contact Us</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/pages/company/team.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Our Team</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/pages/company/licenses.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Licenses</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/pages/company/sitemap.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Sitemap</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </a>
                 <div data-kt-menu-trigger="click" data-kt-menu-placement="right-start" class="menu-item py-2">
                     <span class="menu-link menu-center" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                         <span class="menu-icon me-0">

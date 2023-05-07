@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,5 +29,26 @@ Route::post('/auth/login', [AuthController::class, 'process'])->name('login')->m
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index'); 
     Route::get('/signout', [AuthController::class, 'logout'])->name('admin.logout');
+
+    Route::group(['namespace' => '\App\Http\Controllers\Admin'], function () {
+        Route::get('/users', 'UsersController@index')->name('users');
+        Route::get('/users/delete/{id}', 'UsersController@delete')->name('delete_user');
+        Route::post('/users/add', 'UsersController@create')->name('add_user');
+
+        Route::get('/categories', 'CategoriesController@index')->name('categories');        
+        Route::get('/categories/delete/{id}', 'CategoriesController@delete')->name('categories.delete');        
+        Route::post('/categories/add', 'CategoriesController@create')->name('categories.add');        
+    });
 });
-    
+
+Route::get('/test', [SearchController::class, 'index'])->name('test');
+Route::get('/test/search', [SearchController::class, 'search'])->name('test.search');
+
+
+// TODO:
+//  - Category (add/list/remove) (-)
+//  - Cars (Add/list/remove/edit)
+//  - Orders (accept/list/remove) + mailto
+//  - Messages (list/remove)
+//  - Add/remove custom filters
+//  - Users (add/list/delete) (-)
