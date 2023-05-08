@@ -233,116 +233,22 @@
                         </div>
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="right-start" class="menu-item py-2">
+                <a href="{{ route('cars') }}" class="menu-item py-2 {{ Request::route()->getName() === 'cars' ? 'here' : '' }}">
                     <span class="menu-link menu-center" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                         <span class="menu-icon me-0">
-                            <i class="bi bi-shield-check fs-2"></i>
+                            <i class="bi bi-box fs-2"></i>
                         </span>
-                        <span class="menu-title">Account</span>
+                        <span class="menu-title">Cars</span>
                     </span>
-                    <div class="menu-sub menu-sub-dropdown w-225px px-1 py-4">
-                        <div class="menu-item">
-                            <div class="menu-content">
-                                <span class="menu-section fs-5 fw-bolder ps-1 py-1">Account</span>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/account/overview.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Overview</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/account/settings.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Settings</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/account/security.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Security</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/account/billing.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Billing</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/account/statements.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Statements</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/account/referrals.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Referrals</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/account/api-keys.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">API Keys</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="right-start" class="menu-item py-2">
+                </a>
+                <a href="{{ route('messages') }}" class="menu-item py-2 {{ Request::route()->getName() === 'messages' ? 'here' : '' }}">
                     <span class="menu-link menu-center" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                         <span class="menu-icon me-0">
                             <i class="bi bi-chat-square-text fs-2"></i>
                         </span>
-                        <span class="menu-title">Chat</span>
+                        <span class="menu-title">Message</span>
                     </span>
-                    <div class="menu-sub menu-sub-dropdown w-225px px-1 py-4">
-                        <div class="menu-item">
-                            <div class="menu-content">
-                                <span class="menu-section fs-5 fw-bolder ps-1 py-1">Chat</span>
-                            </div>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/apps/chat/private.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Private Chat</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/apps/chat/group.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Group Chat</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../../demo6/dist/apps/chat/drawer.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Drawer Chat</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </a>
                 <a href="{{ route('users') }}" class="menu-item py-2 {{ Request::route()->getName() === 'users' ? 'here' : '' }}">
                     <span class="menu-link menu-center" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                         <span class="menu-icon me-0">
