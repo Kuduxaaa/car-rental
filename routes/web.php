@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\CarsController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\SearchController;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,12 +21,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PagesController::class, 'home']);
+Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('/contact', [PagesController::class, 'contact']);
 Route::get('/about-us', [PagesController::class, 'about']);
-Route::get('/cars', [PagesController::class, 'cars']);
 Route::get('/rental-terms', [PagesController::class, 'terms']);
 
+Route::get('/cars', [CarsController::class, 'cars'])->name('cars.all');
+Route::get('/car/{id}', [CarsController::class, 'car'])->name('cars.detail')->where('id', '[0-9]+');;
+Route::post('/cars/search', [SearchController::class, 'search'])->name('cars.search');
+Route::get('/cars/search', [CarsController::class, 'cars'])->name('cars.all');
+
+Route::post('/orders/make', [OrdersController::class, 'create'])->name('make.order');
 Route::post('/contact/send', [MessagesController::class, 'send'])->name('message.send');
 
 Route::get('/auth/login', [AuthController::class, 'show'])->name('login');
@@ -46,21 +54,18 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/filters/delete/{id}', 'FiltersController@delete')->name('filters.delete');
         Route::post('/filters/add', 'FiltersController@create')->name('filters.create');
 
-        Route::get('/messages', 'MessagesController@index')->name('messages');
-        Route::get('/messages/delete/{id}', 'MessagesController@delete')->name('messages.delete');
+        Route::get('/locations', 'LocationsController@index')->name('locations');
+        Route::get('/locations/delete/{id}', 'LocationsController@delete')->name('locations.delete');
+        Route::post('/locations/create', 'LocationsController@create')->name('locations.create');
 
         Route::get('/cars', 'CarsController@index')->name('cars');
+        Route::get('/cars/edit/{id}', 'CarsController@edit')->name('cars.edit');
+        Route::post('/cars/edit/{id}', 'CarsController@edit_perform')->name('cars.edit');
+        Route::post('/cars/add', 'CarsController@create')->name('cars.add');
+        Route::get('/cars/delete/{id}', 'CarsController@delete')->name('cars.delete');
+
+        Route::get('/orders', 'OrdersController@index')->name('orders');
     });
 });
 
 Route::get('/test', [SearchController::class, 'index'])->name('test');
-Route::get('/test/search', [SearchController::class, 'search'])->name('test.search');
-
-
-// TODO:
-//  - Category (add/list/remove)              (-)
-//  - Cars (Add/list/remove/edit)             ()
-//  - Orders (accept/list/remove) + mailto    ()
-//  - Messages (list/remove)                  (-)
-//  - Add/remove custom filters               (-)
-//  - Users (add/list/delete)                 (-)

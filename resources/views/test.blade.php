@@ -88,7 +88,7 @@
                 <select class="form-control" id="{{ $name }}" name="filters[{{ $name }}][]" multiple>
                     <option value="">Any {{ $name }}</option>
                     @foreach ($values as $value)
-                        <option value="{{ $value->value }}">{{ $value->value }}</option>
+                        <option value="filters[{{ $name }}]">{{ $value->value }}</option>
                     @endforeach
                 </select>
             </div>

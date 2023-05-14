@@ -6,7 +6,9 @@ use Carbon\Carbon;
 use App\Models\Car;
 use App\Models\Filters;
 use App\Models\Category;
+use App\Models\CarFilters;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SearchController extends Controller
 {
@@ -20,41 +22,55 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $request->validate([
-            'category' => 'nullable|exists:categories,id',
-            'pickup_date' => 'nullable|date_format:Y-m-d\TH:i:s',
-            'dropoff_date' => 'nullable|date_format:Y-m-d\TH:i:s',
-            'filters' => 'nullable|array',
-            'filters.*' => 'nullable|array',
-            'filters.*.*' => 'nullable|string',
-        ]);
+        $rules = [
+            'category.*' => 'sometimes|string',
+            'filters.*.*' => 'required|string|max:255',
+        ];
 
         $query = Car::query();
+        $validator = Validator::make($request->all(), $rules);
 
-        if ($request->filled('category')) {
-            $query->where('category_id', $request->input('category'));
-        }
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        } 
 
-        if ($request->filled('pickup_date') && $request->filled('dropoff_date')) {
-            $pickup = Carbon::createFromFormat('Y-m-d\TH:i:s', $request->input('pickup_date'));
-            $dropoff = Carbon::createFromFormat('Y-m-d\TH:i:s', $request->input('dropoff_date'));
+        $requestData = $validator->validated();
+        $filters = $requestData['filters'] ?? [];
+        $categories = $requestData['category'] ?? [];
 
-            $query->whereDoesntHave('reservations', function ($query) use ($pickup, $dropoff) {
-                $query->where('pickup_date', '<', $dropoff)
-                      ->where('dropoff_date', '>', $pickup);
-            });
-        }
+        $keys = [];
+        $values = [];
 
-        if ($request->filled('filters')) {
-            foreach ($request->input('filters') as $name => $values) {
-                $query->whereHas('filters', function ($query) use ($name, $values) {
-                    $query->where('name', $name)->whereIn('value', $values);
-                });
+        foreach ($filters as $key => $value) {
+            if (is_array($value)) {
+                foreach ($value as $item) {
+                    $keys[] = $key;
+                    $values[] = $item;
+                }
             }
         }
 
-        $results = $query->get();
+        $query = Car::query();
+        $categoryIds = count($categories) > 0
+            ? Category::whereIn('name', $categories)
+                ->pluck('id')
+                ->toArray()
+            : Category::pluck('id')->toArray();
+        
+        $query->join('car_filter', 'cars.id', '=', 'car_filter.car_id')
+              ->join('filters', 'car_filter.filter_id', '=', 'filters.id')
+              ->whereIn('cars.category_id', $categoryIds)
+              ->whereIn('filters.name', $keys)
+              ->whereIn('filters.value', $values);
+        
+        $cars = $query->select('cars.*')
+                      ->groupBy('cars.id', 'cars.name', 'cars.images', 'cars.description', 'cars.price', 'cars.category_id', 'cars.created_at', 'cars.updated_at')
+                      ->havingRaw('COUNT(*) = ?', [count($filters)])
+                      ->get();
 
-        return view('search-results', compact('results'));
+
+        return view('cars', compact('cars'));
     }
 }

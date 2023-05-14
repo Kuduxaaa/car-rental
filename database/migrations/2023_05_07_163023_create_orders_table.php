@@ -16,16 +16,18 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->date('birth_date');
+            $table->string('email');
             $table->string('phone_number');
             $table->string('communicate_with')->default('phone_number');
 
             $table->unsignedBigInteger('car_id');
             $table->foreign('car_id')->references('id')->on('cars');
-            $table->date('pickup_date');
-            $table->time('pickup_time');
-            $table->date('dropoff_date');
-            $table->time('dropoff_time');
-            $table->integer('total_price');
+            $table->dateTime('pickup_date');
+            $table->dateTime('dropoff_date');
+            $table->integer('totalp');
+
+            $table->string('pickup_loc');
+            $table->string('dropoff_loc');
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ class CategoriesController extends Controller
         $categories = Category::leftJoin('cars', 'categories.id', '=', 'cars.category_id')
                 ->groupBy('categories.id', 'categories.name')
                 ->select('categories.id', 'categories.name', DB::raw('COUNT(cars.id) as cars_count'))
+                ->orderBy('id', 'DESC')
                 ->get();
 
 

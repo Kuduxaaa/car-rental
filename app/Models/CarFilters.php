@@ -9,6 +9,8 @@ class CarFilters extends Model
 {
     use HasFactory;
 
+    protected $table = 'car_filter';
+
     protected $fillable = ['car_id', 'filter_id'];
     
 

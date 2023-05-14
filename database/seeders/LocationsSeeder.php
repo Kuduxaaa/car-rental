@@ -65,6 +65,58 @@ class LocationsSeeder extends Seeder
                 'price' => 100,
                 'type' => 'pickup'
             ],
+            
+            [
+                'name' => 'Tbilisi',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
+            [
+                'name' => 'Tbilisi international airport',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
+            [
+                'name' => 'Batumi',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
+            [
+                'name' => 'Kobuleti',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
+            [
+                'name' => 'Kutaisi',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
+            [
+                'name' => 'Poti',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
+            [
+                'name' => 'Borjomi',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
+            [
+                'name' => 'Bakuriani',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
+            
+            [
+                'name' => 'Khazbegi',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
+            [
+                'name' => 'Gudauri',
+                'price' => 0,
+                'type' => 'dropoff'
+            ],
         ];
 
         foreach ($data as $value) 

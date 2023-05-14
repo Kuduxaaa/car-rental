@@ -26,4 +26,14 @@ class Car extends Model
     {
         return $this->category;
     }
+
+    public function getImagesAttribute($value)
+    {
+        return json_decode($value, true);
+    }
+
+    public function filters()
+    {
+        return $this->hasMany(CarFilters::class);
+    }
 }

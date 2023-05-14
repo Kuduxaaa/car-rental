@@ -14,6 +14,7 @@ class Order extends Model
         'first_name',
         'last_name',
         'birth_date',
+        'email',
         'phone_number',
         'communicate_with',
         'car_id',
@@ -21,7 +22,13 @@ class Order extends Model
         'pickup_time',
         'dropoff_date',
         'dropoff_time',
-        'total_price'
+        'totalp',
+        'pickup_loc',
+        'dropoff_loc',
+    ];
+
+    protected $casts = [
+        'totalp' => 'integer',
     ];
 
     public function car()
